@@ -1,0 +1,40 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "migrate.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "NODE_ENV=production server.js",
+    "dev": " nodemon server.js",
+    "db:up": "docker compose up",
+    "db:down": "docker compose down",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amirbashan/oldArcade.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nearform/sql": "^1.9.0",
+    "ajv": "^8.8.2",
+    "ajv-formats": "^2.1.1",
+    "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "fluent-json-schema": "^3.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "postgrator": "^4.3.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
