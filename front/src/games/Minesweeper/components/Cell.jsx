@@ -21,7 +21,6 @@ export default function Cell(props) {
     };
     setStyle(res[1]);
     setRevealedStyle(revStyle);
-    console.log("object");
   }, [details]);
 
   const handleClick = (e) => {

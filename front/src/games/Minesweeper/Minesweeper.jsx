@@ -36,10 +36,16 @@ export default function Board() {
           if (move[i][j].value === "X") move[i][j].revealed = true;
         }
       }
+      if (currentUser) {
+        console.log("win");
+        const newRecord = { game: "Minesweeper", lvl: level, score: time };
+        const res = submitScoreMinesweeper(token, newRecord).then(() => {
+          console.log(res);
+        });
+      }
       setGame(move);
     }
-    console.log("222222222222");
-  }, [safeCellCounter, possibleWin, game]);
+  }, [safeCellCounter, currentUser]);
 
   const handleNewGame = (e) => {
     setClock(false);
@@ -80,10 +86,6 @@ export default function Board() {
           if (move[i][j].value === "X") move[i][j].revealed = true;
         }
       }
-      //   if (currentUser) {
-      //     const newRecord = { game: "Minesweeper", lvl: level, score: time };
-      //     submitScoreMinesweeper(token, newRecord);
-      //   }
     }
     move[x][y].value === 0 ? nearSafeCell(x, y) : setSafeCellCounter((prev) => prev - 1);
     setGame(move);
