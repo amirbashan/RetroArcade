@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { checkToken } = require("../middleware/checkToken");
-const { addScore, getTop10 } = require("../data/scores");
+const { addScore, getTop10Time, getTop10Score } = require("../data/scores");
 
 router.post("/", checkToken, async (req, res) => {
   const { game, score, lvl } = req.body;
@@ -10,9 +10,15 @@ router.post("/", checkToken, async (req, res) => {
   res.send(response);
 });
 
-router.get("/top10", async (req, res) => {
+router.get("/top10/snake", async (req, res) => {
   const { game, lvl } = req.query;
-  const response = await getTop10(game, lvl);
+  const response = await getTop10Time(game, lvl);
+  res.send(response);
+});
+
+router.get("/top10/minesweeper", async (req, res) => {
+  const { game, lvl } = req.query;
+  const response = await getTop10Score(game, lvl);
   res.send(response);
 });
 
