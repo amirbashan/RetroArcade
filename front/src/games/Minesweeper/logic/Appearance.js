@@ -29,11 +29,11 @@ export function CellFix(details) {
       style = { color: "#FFFFFF" };
       break;
   }
-  isNaN(details.value) ? (style.fontSize = "20px") : (style.fontSize = "30px");
+  isNaN(details.value) ? (style.fontSize = "16px") : (style.fontSize = "23px");
   style.fontWeight = "bold";
   style.background = "#BDBDBD";
   style.backgroundSize = "contain";
-  style.border = "3px solid #ACACAC";
+  style.border = "2px solid #ACACAC";
   details.value ? (cell = details.value) : (cell = "");
   if (details.value === "X") cell = "💣";
   return [cell, style];

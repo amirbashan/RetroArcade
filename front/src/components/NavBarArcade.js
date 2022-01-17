@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function NavBarArcade() {
   return (
     <div className="navBar">
-      <div className="shadow p-3 mb-5 bg-white rounded">
+      <div className="shadow p-1 mb-3 bg-white rounded">
         <Navbar bg="light" variant="light">
           <Container>
             <Link to="/">

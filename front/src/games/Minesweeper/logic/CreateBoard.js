@@ -10,7 +10,7 @@ function BoardSetup(row, col, bombs) {
   for (let i = 0; i < row; i++) {
     let columns = [];
     for (let j = 0; j < col; j++) {
-      columns.push({ value: 0, revealed: false, x: i, y: j });
+      columns.push({ value: 0, revealed: false, x: i, y: j, flagged: false });
     }
     board.push(columns);
   }
@@ -83,6 +83,25 @@ export function SafeMoves(lvl) {
       break;
     default:
       amount = 71;
+      break;
+  }
+  return amount;
+}
+
+export function FlagAmount(lvl) {
+  let amount;
+  switch (lvl) {
+    case "Beginner":
+      amount = 10;
+      break;
+    case "Intermediate":
+      amount = 40;
+      break;
+    case "Expert":
+      amount = 99;
+      break;
+    default:
+      amount = 0;
       break;
   }
   return amount;

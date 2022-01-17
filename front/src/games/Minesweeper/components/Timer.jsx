@@ -7,9 +7,9 @@ export default function Timer(props) {
     let newTime;
     const addSec = () => {
       setTimeout(() => {
-        newTime = time + 1;
+        newTime = time + 0.5;
         setTime(newTime);
-      }, 1000);
+      }, 500);
     };
     if (clock) addSec();
   }, [time, setTime, clock]);
@@ -17,7 +17,8 @@ export default function Timer(props) {
   return (
     <div className="clock form-control d-flex justify-content-between">
       <span>⏰</span>
-      <span> {time} </span> <span>⏰</span>
+      <span> {Math.floor(time)} </span>
+      <span>⏰</span>
     </div>
   );
 }
