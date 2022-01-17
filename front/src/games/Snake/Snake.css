@@ -24,3 +24,10 @@
   font-weight: bold;
   font-size: 30px;
 }
+
+.counterH1 {
+  position: relative;
+  display: flex;
+  margin-left: 40%;
+  margin-top: 2%;
+}
