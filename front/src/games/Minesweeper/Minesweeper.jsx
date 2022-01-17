@@ -45,6 +45,7 @@ export default function Board() {
       }
       setGame(move);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [safeCellCounter, currentUser]);
 
   const handleNewGame = (e) => {
