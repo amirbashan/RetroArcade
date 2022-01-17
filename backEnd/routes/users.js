@@ -3,8 +3,8 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-const { addUser } = require("../data/users");
-// const { checkToken } = require("../middleware/checkToken");
+const { addUser, getUserById, editUser } = require("../data/users");
+const { checkToken } = require("../middleware/checkToken");
 const { validateBody } = require("../middleware/validateBody");
 const { preventDuplicateUsers } = require("../middleware/preventDuplicateUsers");
 const { encryptPassword } = require("../middleware/encryptPassword");
@@ -36,6 +36,27 @@ router.post("/login", validateBody(Schemas.loginSchema), doesUserExist, async (r
         res.send({ token });
       }
     });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.get("/myPage", checkToken, async (req, res) => {
+  try {
+    const id = req.body.decodedToken.id;
+    const user = await getUserById(id);
+    res.send(user);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.put("/myPage", checkToken, async (req, res) => {
+  try {
+    const id = req.body.decodedToken.id;
+    const { email, name, avatar } = req.body;
+    const user = await editUser(id, email, name, avatar);
+    res.send(user);
   } catch (err) {
     console.log(err);
   }
