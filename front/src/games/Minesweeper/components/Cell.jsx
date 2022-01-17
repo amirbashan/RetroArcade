@@ -21,13 +21,15 @@ export default function Cell(props) {
     };
     setStyle(res[1]);
     setRevealedStyle(revStyle);
+    console.log("object");
   }, [details]);
 
   useEffect(() => {
     if (details.value === "X" && safeCellCounter === 0 && possibleWin) {
       setValue("🚩");
     }
-  }, [details.revealed, safeCellCounter, possibleWin, details.value]);
+    console.log("now");
+  }, [details.value, safeCellCounter, possibleWin]);
 
   const handleClick = (e) => {
     if (!details.revealed && activeGame) {

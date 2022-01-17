@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { SetupDifficulty, SafeMoves } from "../logic/CreateBoard";
-import Cell from "./Cell";
-import Timer from "./Timer";
+import React, { useState, useEffect, useContext } from "react";
+import { SetupDifficulty, SafeMoves } from "./logic/CreateBoard";
+import Cell from "./components/Cell";
+import Timer from "./components/Timer";
+import { AppContext } from "../../Context/AppContext";
+import { submitScoreMinesweeper } from "../../lib/ScoresDB";
 
 export default function Board() {
   const [game, setGame] = useState([]);
@@ -11,6 +13,7 @@ export default function Board() {
   const [safeCellCounter, setSafeCellCounter] = useState(1);
   const [level, setLevel] = useState("Beginner");
   const [possibleWin, setPossibleWin] = useState(true);
+  const { currentUser, token } = useContext(AppContext);
 
   useEffect(() => {
     setActiveGame(true);
@@ -76,6 +79,10 @@ export default function Board() {
           if (move[i][j].value === "X") move[i][j].revealed = true;
         }
       }
+      //   if (currentUser) {
+      //     const newRecord = { game: "Minesweeper", lvl: level, score: time };
+      //     submitScoreMinesweeper(token, newRecord);
+      //   }
     }
     move[x][y].value === 0 ? nearSafeCell(x, y) : setSafeCellCounter((prev) => prev - 1);
     setGame(move);
