@@ -1,0 +1,26 @@
+.gameArea {
+  position: relative;
+  margin: 20px auto;
+  width: 30% !important;
+  height: 50% !important;
+}
+
+.snakeButton {
+  position: relative;
+  display: flex;
+  margin-left: 31%;
+  margin-top: 2%;
+}
+
+.floatTxt {
+  position: absolute;
+  left: 21%;
+  right: 20%;
+  top: 43%;
+  z-index: 1000;
+  padding: 5px;
+  color: #000;
+  border-radius: 7px;
+  font-weight: bold;
+  font-size: 30px;
+}
