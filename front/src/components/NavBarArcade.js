@@ -3,6 +3,7 @@ import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import "../styles/NavBarArcade.css";
 import webLogo from "../build/images/itcPackMan.png";
+import { Link } from "react-router-dom";
 
 function NavBarArcade() {
   return (
@@ -10,11 +11,14 @@ function NavBarArcade() {
       <div className="shadow p-3 mb-5 bg-white rounded">
         <Navbar bg="light" variant="light">
           <Container>
-            <img href="http://localhost:3000/" className="logoImageDiv" src={webLogo} alt="logo" />
+            <Link to="/">
+              <img className="logoImageDiv" src={webLogo} alt="logo" />
+            </Link>
             <Nav className="me-auto">
-              <Nav.Link href="http://localhost:3000/">Home</Nav.Link>
               <Nav.Link href="http://localhost:3000/Snake">Snake</Nav.Link>
-              <Nav.Link href="http://localhost:3000/Minesweeper">Minesweeper</Nav.Link>
+              <Nav.Link href="http://localhost:3000/Minesweeper">
+                Minesweeper
+              </Nav.Link>
             </Nav>
           </Container>
         </Navbar>

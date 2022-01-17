@@ -18,6 +18,7 @@ const Snake = () => {
   const [dir, setDir] = useState([0, -1]);
   const [speed, setSpeed] = useState(null);
   const [gameOver, setGameOver] = useState(false);
+  const [counter, setCounter] = useState(0);
 
   useInterval(() => gameLoop(), speed);
 
@@ -44,12 +45,15 @@ const Snake = () => {
     for (const segment of snk) {
       if (piece[0] === segment[0] && piece[1] === segment[1]) return true;
     }
+
     return false;
   };
 
   const checkAppleCollision = (newSnake) => {
     if (newSnake[0][0] === apple[0] && newSnake[0][1] === apple[1]) {
       let newApple = createApple();
+      setCounter(counter + 1);
+
       while (checkCollision(newApple, newSnake)) {
         newApple = createApple();
       }
@@ -65,8 +69,8 @@ const Snake = () => {
     snakeCopy.unshift(newSnakeHead);
     if (checkCollision(newSnakeHead)) endGame();
     if (!checkAppleCollision(snakeCopy)) {
-      snakeCopy.pop()
-    };
+      snakeCopy.pop();
+    }
     setSnake(snakeCopy);
   };
 
@@ -76,6 +80,7 @@ const Snake = () => {
     setDir([0, -1]);
     setSpeed(SPEED);
     setGameOver(false);
+    setCounter(0);
   };
 
   useEffect(() => {
@@ -96,6 +101,7 @@ const Snake = () => {
       onKeyDown={(e) => moveSnake(e)}
     >
       <h1 className="snakeButton">Snake</h1>
+      <h1 className="counterH1">{counter}</h1>
 
       <canvas
         style={{ border: "1px solid black", borderRadius: "10px" }}
