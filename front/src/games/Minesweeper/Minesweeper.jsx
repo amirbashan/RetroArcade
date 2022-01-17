@@ -38,6 +38,7 @@ export default function Board() {
       }
       setGame(move);
     }
+    console.log("222222222222");
   }, [safeCellCounter, possibleWin, game]);
 
   const handleNewGame = (e) => {

@@ -24,13 +24,6 @@ export default function Cell(props) {
     console.log("object");
   }, [details]);
 
-  useEffect(() => {
-    if (details.value === "X" && safeCellCounter === 0 && possibleWin) {
-      setValue("🚩");
-    }
-    console.log("now");
-  }, [details.value, safeCellCounter, possibleWin]);
-
   const handleClick = (e) => {
     if (!details.revealed && activeGame) {
       revealCell(details.x, details.y);
@@ -40,7 +33,7 @@ export default function Cell(props) {
 
   return (
     <div onClick={handleClick} className="cell d-flex justify-content-center align-items-center" style={details.revealed ? style : revealedStyle}>
-      {details.revealed && value}
+      {details.value === "X" && safeCellCounter === 0 && possibleWin ? "🚩" : details.revealed && value}
     </div>
   );
 }
