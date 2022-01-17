@@ -25,7 +25,7 @@ router.post("/signup", validateBody(Schemas.signUpSchema), preventDuplicateUsers
 
 router.post("/login", validateBody(Schemas.loginSchema), doesUserExist, async (req, res) => {
   try {
-    const { password, user } = req.body;
+    const { email, password, user } = req.body;
     bcrypt.compare(password, user.password, (err, result) => {
       if (err) {
         res.status(400).send("Incorrect Password");

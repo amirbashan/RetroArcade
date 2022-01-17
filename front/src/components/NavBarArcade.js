@@ -16,7 +16,9 @@ function NavBarArcade() {
             </Link>
             <Nav className="me-auto">
               <Nav.Link href="http://localhost:3000/Snake">Snake</Nav.Link>
-              {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
+              <Nav.Link href="http://localhost:3000/Minesweeper">
+                Minesweeper
+              </Nav.Link>
             </Nav>
           </Container>
         </Navbar>
