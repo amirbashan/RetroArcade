@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const signUpUser = (user) => {
-  console.log("axios");
   return axios
     .post("http://localhost:8000/users/signup", user)
     .then((response) => {

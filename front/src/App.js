@@ -22,7 +22,6 @@ function App() {
     if (localToken) {
       setToken(localToken);
       getBasicUserInfo(localToken).then((response) => {
-        console.log(response.data);
         if (!response) {
           localStorage.clear();
         } else {

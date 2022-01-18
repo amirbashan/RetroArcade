@@ -18,19 +18,14 @@ export default function ProfilePage() {
   const [editMode, setEditMode] = useState(false);
   const [pictureData, setPictureData] = useState("");
 
-  if (!currentUser) navigate(`/`);
-
   useEffect(() => {
-    let isMounted = true;
+    if (!currentUser) navigate(`/`);
     setName(currentUser.name);
     setEmail(currentUser.email);
     setAvatar(currentUser.avatar);
     setRole(currentUser.isAdmin);
     setJoined(currentUser.created_date);
-    return () => {
-      isMounted = false;
-    };
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   const fixData = (date) => {
     if (date) {
@@ -65,22 +60,12 @@ export default function ProfilePage() {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      let user;
-      if (pictureData) {
-        user = {
-          name,
-          email,
-          avatar: pictureData,
-        };
-      } else {
-        user = {
-          name,
-          email,
-          avatar: avatar,
-        };
-      }
+      let user = {
+        name,
+        email,
+      };
+      pictureData ? (user.avatar = pictureData) : (user.avatar = avatar);
       if (window.confirm("Confirm changes")) {
-        console.log(user);
         const response = await editUserInfo(token, user, currentUser.email);
         if (response.affectedRows === 1) alert("Edit Successful");
         setEditMode(false);

@@ -47,11 +47,8 @@ export default function Board() {
         }
       }
       if (currentUser) {
-        console.log("win");
         const newRecord = { game: "Minesweeper", lvl: level, score: Math.floor(time) };
-        submitScoreMinesweeper(token, newRecord).then((res) => {
-          console.log(res);
-        });
+        submitScoreMinesweeper(token, newRecord).then((res) => {});
       }
       setGame(move);
     }
