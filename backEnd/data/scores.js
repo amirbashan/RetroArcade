@@ -2,7 +2,7 @@ const { query } = require("../lib/db");
 
 async function addScore(id, game, score, lvl) {
   try {
-    const sql = `INSERT INTO highscore (userId, game,difficulty, score) VALUES ('${id}', '${game}','${lvl}','${score}'`;
+    const sql = `INSERT INTO highscore (userId, game,difficulty, score) VALUES ('${id}', '${game}','${lvl}','${score}');`;
     const response = await query(sql);
     return response;
   } catch (err) {
@@ -12,7 +12,7 @@ async function addScore(id, game, score, lvl) {
 
 async function getTop10Time(game, lvl) {
   try {
-    const sql = `SELECT * FROM highscore WHERE game='${game}' AND difficulty LIKE '${lvl}' ORDER BY score DESC LIMIT 10;`;
+    const sql = `SELECT name,score,avatar FROM highscore JOIN users on highscore.userId=users.id WHERE game='${game}' AND difficulty LIKE '${lvl}' ORDER BY score LIMIT 10;`;
     const response = await query(sql);
     return response;
   } catch (err) {
@@ -21,7 +21,7 @@ async function getTop10Time(game, lvl) {
 }
 async function getTop10Score(game, lvl) {
   try {
-    const sql = `SELECT * FROM highscore WHERE game='${game}' AND difficulty LIKE '${lvl}' ORDER BY score LIMIT 10;`;
+    const sql = `SELECT name,score,avatar FROM highscore JOIN users on highscore.userId=users.id WHERE game='${game}' AND difficulty LIKE '${lvl}' ORDER BY score DESC LIMIT 10;`;
     const response = await query(sql);
     return response;
   } catch (err) {

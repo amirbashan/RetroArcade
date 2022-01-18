@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS highscore (
   game               VARCHAR(100) NOT NULL,
   userId             VARCHAR(100) NOT NULL,
   difficulty         VARCHAR(100),
-  score              VARCHAR(100) NOT NULL,
+  score              INT NOT NULL,
   created_date       DATE DEFAULT (CURRENT_DATE),
   PRIMARY KEY (id)
 );
