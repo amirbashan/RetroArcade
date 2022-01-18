@@ -4,7 +4,7 @@ import Cell from "./components/Cell";
 import Timer from "./components/Timer";
 import Flags from "./components/Flags";
 import { AppContext } from "../../Context/AppContext";
-import { submitScoreMinesweeper, getTopMinesweepers } from "../../lib/ScoresDB";
+import { submitScore, getTopMinesweepers } from "../../lib/ScoresDB";
 import ScoreBoard from "../../components/ScoreBoard";
 
 export default function Board() {
@@ -48,7 +48,7 @@ export default function Board() {
       }
       if (currentUser) {
         const newRecord = { game: "Minesweeper", lvl: level, score: Math.floor(time) };
-        submitScoreMinesweeper(token, newRecord).then((res) => {});
+        submitScore(token, newRecord);
       }
       setGame(move);
     }
