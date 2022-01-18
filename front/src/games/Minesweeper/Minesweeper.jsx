@@ -165,7 +165,7 @@ export default function Board() {
         </div>
       </div>
       <div className="d-flex col-4 align-items-start mx-5">
-        <ScoreBoard scoresArray={scores} difficulty={level} scoreType="sec" />
+        <ScoreBoard scoresArray={scores} scoreType="sec" />
       </div>
     </div>
   );
