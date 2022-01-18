@@ -91,7 +91,7 @@ export default function ProfilePage() {
           </div>
           <div className="row mb-2">
             <div className="col d-flex flex-wrap align-items-end">
-              <label>role</label>
+              <label>Role</label>
               <input type="text" readOnly value={role === 1 ? "Admin" : "User"} className="form-control" />
             </div>
             <div className="col d-flex flex-wrap align-items-end">
@@ -99,12 +99,14 @@ export default function ProfilePage() {
               <input type="text" readOnly value={fixData(joined)} className="form-control" />
             </div>
           </div>
-          <label>Change your Avatar</label>
-          <div className="d-flex flex-row">
-            <input type="file" onChange={handleAvatarChange} className="form-control mb-2" />
-            <button type="button" onClick={handleUpload} className="form-control w-25 mb-2">
-              Upload {pictureData && <>✔️</>}
-            </button>
+          <div className="d-flex flex-column ">
+            <label className="align-self-start">Change your Avatar</label>
+            <div className="d-flex flex-row">
+              <input type="file" onChange={handleAvatarChange} className="form-control mb-2" />
+              <button type="button" onClick={handleUpload} className="form-control w-25 mb-2">
+                Upload {pictureData && <>✔️</>}
+              </button>
+            </div>
           </div>
           <div className="row my-2">
             <div className="col d-flex">
