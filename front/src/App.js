@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { AppContext } from "./Context/AppContext";
-import NavBarArcade from "../src/components/NavBarArcade";
-import Login from "../src/scripts/Login";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { AppContext } from "./Context/AppContext";
+import { getBasicUserInfo } from "./lib/UsersDB";
+import { ChakraProvider } from "@chakra-ui/react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import NavBarArcade from "./components/NavBarArcade";
+import Home from "./pages/Home";
+import ProfilePage from "./pages/ProfilePage";
 import Snake from "./games/Snake/Snake";
 import Minesweeper from "./games/Minesweeper/Minesweeper";
-import { getBasicUserInfo } from "./lib/UsersDB";
-import "./App.css";
 
 function App() {
   const [currentUser, setCurrentUser] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [token, setToken] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const localToken = localStorage.getItem("TOKEN");
     if (localToken) {
       setToken(localToken);
       getBasicUserInfo(localToken).then((response) => {
+        console.log(response.data);
         if (!response) {
           localStorage.clear();
         } else {
@@ -27,29 +31,34 @@ function App() {
         }
       });
     }
-  }, []);
+  }, [showModal]);
 
   return (
     <AppContext.Provider
       value={{
         currentUser: currentUser,
         setCurrentUser: setCurrentUser,
+        showModal: showModal,
+        setShowModal: setShowModal,
         isAdmin: isAdmin,
         setIsAdmin: setIsAdmin,
         token: token,
         setToken: setToken,
       }}
     >
-      <BrowserRouter>
-        <div className="App">
-          <NavBarArcade />
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/Snake" element={<Snake />} />
-            <Route path="/Minesweeper" element={<Minesweeper />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <ChakraProvider>
+        <BrowserRouter>
+          <div className="App">
+            <NavBarArcade />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/Snake" element={<Snake />} />
+              <Route path="/Minesweeper" element={<Minesweeper />} />
+              <Route path="/myProfile" element={<ProfilePage />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </ChakraProvider>
     </AppContext.Provider>
   );
 }

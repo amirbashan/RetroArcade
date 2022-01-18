@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { SetupDifficulty, SafeMoves } from "./logic/CreateBoard";
+import { SetupDifficulty, SafeMoves, FlagAmount } from "./logic/CreateBoard";
 import Cell from "./components/Cell";
 import Timer from "./components/Timer";
+import Flags from "./components/Flags";
 import { AppContext } from "../../Context/AppContext";
 import { submitScoreMinesweeper } from "../../lib/ScoresDB";
 
@@ -9,6 +10,7 @@ export default function Board() {
   const [game, setGame] = useState([]);
   const [clock, setClock] = useState(false);
   const [time, setTime] = useState(0);
+  const [flagsCounter, setFlagsCounter] = useState(0);
   const [activeGame, setActiveGame] = useState(true);
   const [safeCellCounter, setSafeCellCounter] = useState(1);
   const [level, setLevel] = useState("Beginner");
@@ -23,6 +25,8 @@ export default function Board() {
     const number = SafeMoves(level);
     setSafeCellCounter(number);
     setClock(false);
+    const counter = FlagAmount(level);
+    setFlagsCounter(counter);
     setTime(0);
   }, [level]);
 
@@ -30,15 +34,24 @@ export default function Board() {
     if (safeCellCounter < 1) {
       setActiveGame(false);
       setClock(false);
+      setFlagsCounter(0);
       let move = [...game];
       for (let i = 0; i < move.length; i++) {
         for (let j = 0; j < move[i].length; j++) {
           if (move[i][j].value === "X") move[i][j].revealed = true;
         }
       }
+      if (currentUser) {
+        console.log("win");
+        const newRecord = { game: "Minesweeper", lvl: level, score: Math.floor(time) };
+        submitScoreMinesweeper(token, newRecord).then((res) => {
+          console.log(res);
+        });
+      }
       setGame(move);
     }
-  }, [safeCellCounter, possibleWin, game]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [safeCellCounter, currentUser]);
 
   const handleNewGame = (e) => {
     setClock(false);
@@ -49,12 +62,27 @@ export default function Board() {
     setActiveGame(true);
     setPossibleWin(true);
     setTime(0);
+    const counter = FlagAmount(level);
+    setFlagsCounter(counter);
+  };
+
+  const flagIt = (e, x, y) => {
+    e.preventDefault();
+    if (time === 0) setClock(true);
+    let move = [...game];
+    move[x][y].flagged = !move[x][y].flagged;
+    move[x][y].flagged ? setFlagsCounter((prev) => prev - 1) : setFlagsCounter((prev) => prev + 1);
+    setGame(move);
   };
 
   const revealCell = (x, y) => {
     if (time === 0) setClock(true);
     const nearSafeCell = (x, y) => {
       move[x][y].revealed = true;
+      if (move[x][y].flagged) {
+        move[x][y].flagged = false;
+        setFlagsCounter((prev) => prev + 1);
+      }
       setSafeCellCounter((prev) => prev - 1);
       setGame(move);
       if (move[x][y].value === 0) {
@@ -79,10 +107,6 @@ export default function Board() {
           if (move[i][j].value === "X") move[i][j].revealed = true;
         }
       }
-      //   if (currentUser) {
-      //     const newRecord = { game: "Minesweeper", lvl: level, score: time };
-      //     submitScoreMinesweeper(token, newRecord);
-      //   }
     }
     move[x][y].value === 0 ? nearSafeCell(x, y) : setSafeCellCounter((prev) => prev - 1);
     setGame(move);
@@ -90,17 +114,14 @@ export default function Board() {
 
   return (
     <>
-      <div className="d-flex row mb-2 mx-5 justify-content-center">
-        <div className="col-2 d-flex flex-wrap align-items-end">
-          <label>Difficulty : </label>
-          <select className="form-select" value={level} onChange={(e) => setLevel(e.target.value)}>
-            <option value="Beginner">Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Expert">Expert</option>
-          </select>
-        </div>
-        <div className="col-2 d-flex justify-content-center align-items-end">
-          <Timer activeGame={activeGame} clock={clock} time={time} setTime={setTime} />
+      <div className="d-flex form-row  flex-column mb-2 mx-5 justify-content-center align-items-center">
+        <div className="d-flex form-row flex-wrap justify-content-center">
+          <div className="col-2 d-flex clock d-flex justify-content-between align-items-end w-50">
+            <Flags flagsCounter={flagsCounter} />
+          </div>
+          <div className="col-2 d-flex clock d-flex justify-content-between align-items-end w-50">
+            <Timer activeGame={activeGame} clock={clock} time={time} setTime={setTime} />
+          </div>
         </div>
       </div>
       <div className="d-flex flex-column align-items-center ">
@@ -113,6 +134,7 @@ export default function Board() {
                     <Cell
                       key={j * 1000}
                       details={details}
+                      flagIt={flagIt}
                       revealCell={revealCell}
                       activeGame={activeGame}
                       safeCellCounter={safeCellCounter}
@@ -125,9 +147,17 @@ export default function Board() {
           })}
         </div>
       </div>
-      <button onClick={handleNewGame} className="btn btn-primary mt-3">
-        New Game
-      </button>
+      <div className="d-flex flex-column justify-content-center align-items-center">
+        <select className="form-select mt-1 w-50" value={level} onChange={(e) => setLevel(e.target.value)}>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Expert">Expert</option>
+        </select>
+
+        <button onClick={handleNewGame} className="btn btn-primary mt-1">
+          New Game
+        </button>
+      </div>
     </>
   );
 }

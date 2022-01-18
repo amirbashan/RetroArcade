@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const signUpUser = (user) => {
+  console.log("axios");
   return axios
     .post("http://localhost:8000/users/signup", user)
     .then((response) => {
@@ -26,4 +27,13 @@ export const getBasicUserInfo = (token) => {
       return response;
     })
     .catch((error) => alert(error.response));
+};
+
+export const editUserInfo = (token, user, id) => {
+  return axios
+    .put(`http://localhost:8000/users/id/?id=${id}`, user, { headers: { Authorization: `Bearer ${token}` } })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => console.log(error));
 };
