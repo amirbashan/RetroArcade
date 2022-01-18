@@ -9,7 +9,7 @@ import {
   SPEED,
   DIRECTIONS,
 } from "../Snake/constants";
-import { Button } from "react-bootstrap";
+import { Button, Dropdown, DropdownButton } from "react-bootstrap";
 
 const Snake = () => {
   const canvasRef = useRef();
@@ -52,7 +52,7 @@ const Snake = () => {
   const checkAppleCollision = (newSnake) => {
     if (newSnake[0][0] === apple[0] && newSnake[0][1] === apple[1]) {
       let newApple = createApple();
-      setCounter(counter + 1);
+      setCounter(counter + 10);
 
       while (checkCollision(newApple, newSnake)) {
         newApple = createApple();
@@ -101,7 +101,10 @@ const Snake = () => {
       onKeyDown={(e) => moveSnake(e)}
     >
       <h1 className="snakeButton">Snake</h1>
-      <h1 className="counterH1">{counter}</h1>
+      <div className="scoreAndDrop">
+        {" "}
+        <h1 className="counterH1">Points: {counter}</h1>
+      </div>
 
       <canvas
         style={{ border: "1px solid black", borderRadius: "10px" }}

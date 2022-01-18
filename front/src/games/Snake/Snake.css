@@ -25,9 +25,11 @@
   font-size: 30px;
 }
 
-.counterH1 {
+.scoreAndDrop {
   position: relative;
   display: flex;
-  margin-left: 40%;
-  margin-top: 2%;
+  justify-content: space-between;
+  align-items: center;
+  width: 65%;
+  margin-left: 10%;
 }
