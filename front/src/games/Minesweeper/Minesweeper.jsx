@@ -30,10 +30,13 @@ export default function Board() {
     const counter = FlagAmount(level);
     setFlagsCounter(counter);
     setTime(0);
+  }, [level]);
+
+  useEffect(() => {
     getTopMinesweepers(level).then((res) => {
       setScores(res);
     });
-  }, [level]);
+  }, [level, activeGame]);
 
   useEffect(() => {
     if (safeCellCounter < 1) {
