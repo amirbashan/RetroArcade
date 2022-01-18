@@ -64,7 +64,7 @@ export function SetupDifficulty(lvl) {
       newGame = BoardSetup(16, 30, 99);
       break;
     default:
-      newGame = BoardSetup(9, 9, 10);
+      newGame = BoardSetup(9, 9, 10-8);
   }
   return newGame;
 }
@@ -73,7 +73,7 @@ export function SafeMoves(lvl) {
   let amount;
   switch (lvl) {
     case "Beginner":
-      amount = 71;
+      amount = 71+8;
       break;
     case "Intermediate":
       amount = 216;

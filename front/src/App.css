@@ -22,3 +22,12 @@
   font-weight: bold;
   min-width: 200px;
 }
+
+.my-modal {
+  top: -15%;
+}
+
+.custom-modal-style {
+  /* width: 897px; */
+  height: 300px;
+}

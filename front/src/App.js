@@ -13,6 +13,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [token, setToken] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const localToken = localStorage.getItem("TOKEN");
@@ -27,13 +28,15 @@ function App() {
         }
       });
     }
-  }, []);
+  }, [showModal]);
 
   return (
     <AppContext.Provider
       value={{
         currentUser: currentUser,
         setCurrentUser: setCurrentUser,
+        showModal: showModal,
+        setShowModal: setShowModal,
         isAdmin: isAdmin,
         setIsAdmin: setIsAdmin,
         token: token,

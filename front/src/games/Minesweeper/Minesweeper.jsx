@@ -44,7 +44,7 @@ export default function Board() {
       if (currentUser) {
         console.log("win");
         const newRecord = { game: "Minesweeper", lvl: level, score: Math.floor(time) };
-        const res = submitScoreMinesweeper(token, newRecord).then(() => {
+        submitScoreMinesweeper(token, newRecord).then((res) => {
           console.log(res);
         });
       }
