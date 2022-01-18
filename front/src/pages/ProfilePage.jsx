@@ -21,26 +21,34 @@ export default function ProfilePage() {
   if (!currentUser) navigate(`/`);
 
   useEffect(() => {
+    let isMounted = true;
     setName(currentUser.name);
     setEmail(currentUser.email);
     setAvatar(currentUser.avatar);
     setRole(currentUser.isAdmin);
     setJoined(currentUser.created_date);
+    return () => {
+      isMounted = false;
+    };
   }, [currentUser]);
 
   const fixData = (date) => {
-    const newDate = date.substr(8, 2) + "-" + date.substr(5, 2) + "-" + date.substr(0, 4);
-    return newDate;
+    if (date) {
+      const newDate = date.substr(8, 2) + "-" + date.substr(5, 2) + "-" + date.substr(0, 4);
+      return newDate;
+    } else {
+      return date;
+    }
   };
 
   const handleNameChange = (e) => (editMode ? setName(e.target.value) : "");
-  const handleAvatarChange = (e) => (editMode ? setNewAvatar(e.target.files[0]) : "");
+  const handleAvatarChange = (e) => setNewAvatar(e.target.files[0]);
 
   const handleUpload = () => {
     editMode ? uploadImage() : alert("please enable edit mode first");
   };
 
-  const uploadImage = (event) => {
+  const uploadImage = (e) => {
     const formData = new FormData();
     formData.append("file", newAvatar);
     formData.append("upload_preset", "arcade");
@@ -57,12 +65,22 @@ export default function ProfilePage() {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      const user = {
-        name,
-        email,
-        avatar,
-      };
+      let user;
+      if (pictureData) {
+        user = {
+          name,
+          email,
+          avatar: pictureData,
+        };
+      } else {
+        user = {
+          name,
+          email,
+          avatar: avatar,
+        };
+      }
       if (window.confirm("Confirm changes")) {
+        console.log(user);
         const response = await editUserInfo(token, user, currentUser.email);
         if (response.affectedRows === 1) alert("Edit Successful");
         setEditMode(false);
