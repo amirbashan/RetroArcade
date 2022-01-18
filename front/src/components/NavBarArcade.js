@@ -14,7 +14,6 @@ function NavBarArcade() {
   const { showModal, setShowModal } = useContext(AppContext);
   const { currentUser, setCurrentUser } = useContext(AppContext);
   const { isAdmin, setIsAdmin } = useContext(AppContext);
-  
 
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
@@ -30,7 +29,7 @@ function NavBarArcade() {
       <div className="shadow p-1 mb-3 bg-white rounded">
         <Navbar bg="light" variant="light">
           <Container>
-            <Link to="/">
+            <Link to="/home">
               <img className="logoImageDiv" src={webLogo} alt="logo" />
             </Link>
             <Nav className="me-auto">
