@@ -1,6 +1,9 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import videoAreYouReady from "../build/videos/1349x410video.mp4";
+import bombVidWhite from "../build/videos/bombVidWhite.mp4";
+import snakeVidWhite from "../build/videos/snakeVidWhite.mp4";
+
 import circleShahar from "../build/images/animateShaharCircle.png";
 import circleAmir from "../build/images/animateAmirCircle.png";
 
@@ -14,19 +17,58 @@ export default function Home() {
           <source src={videoAreYouReady} type="video/mp4" />
         </video>
       </div>
-      {/*
-          
-          //פה צריך להכניס את כרטיסים של המשחקים
-          //פה צריך להכניס את כרטיסים של המשחקים
-          //פה צריך להכניס את כרטיסים של המשחקים
-          //פה צריך להכניס את כרטיסים של המשחקים
-          
-          
-          
-          
-          
-          
-          */}
+      <br />
+      <Row>
+        <Col>
+          <Card.Header className="leftCard">
+            <h1
+              style={{
+                fontSize: "40px",
+              }}
+            >
+              Minesweeper
+            </h1>
+          </Card.Header>
+
+          <Card className="leftCard">
+            <Card.Body>
+              <video className="video" loop={true} autoPlay={true} muted={true}>
+                <source src={bombVidWhite} type="video/mp4" />
+              </video>
+              <br />
+              <Button
+                href="http://localhost:3000/Minesweeper"
+                variant="primary"
+              >
+                Play Minesweeper
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card.Header className="rightCard">
+            <h1
+              style={{
+                fontSize: "40px",
+              }}
+            >
+              Snake
+            </h1>
+          </Card.Header>
+
+          <Card className="rightCard">
+            <Card.Body>
+              <video className="video" loop={true} autoPlay={true} muted={true}>
+                <source src={snakeVidWhite} type="video/mp4" />
+              </video>
+              <br />
+              <Button href="http://localhost:3000/Snake" variant="primary">
+                Play Snake
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
       <br />
       <h1
         style={{

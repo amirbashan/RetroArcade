@@ -26,3 +26,10 @@
   /* border: 15px solid green; */
   margin: 2% 0 2% 0;
 }
+
+.leftCard {
+  margin: 0 2% 0 10%;
+}
+.rightCard {
+  margin: 0 10% 0 2%;
+}
