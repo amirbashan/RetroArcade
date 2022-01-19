@@ -1,5 +1,12 @@
 .logoImageDiv {
-  width: 10%;
+  width: 15%;
+}
+
+.navBarDiv {
+  padding-top: 2%;
+  width: 79%;
+  margin-left: 8%;
+  border-radius: 10% !important;
 }
 
 .ImageDiv {
@@ -7,13 +14,11 @@
   display: flex;
   width: 70%;
 }
-/* .navBar {
-  border-radius: 50%;
-} */
 
 .container {
   max-width: 100%;
 }
+
 .loginIcon {
   width: 30%;
 }

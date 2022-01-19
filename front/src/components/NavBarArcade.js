@@ -28,7 +28,7 @@ function NavBarArcade() {
   return (
     <div className="navBarDiv">
       <div className="shadow p-1 mb-3 bg-white rounded">
-        <Navbar className="navBar" bg="light" variant="light">
+        <Navbar className="navBar" pill bg="light" variant="light">
           <Container className="container">
             <Link className="logoImageDiv" to="/">
               <img className="ImageDiv" src={webLogo} alt="logo" />
@@ -37,10 +37,12 @@ function NavBarArcade() {
               <nav>
                 <ul>
                   <li className="button-one">
-                    <a href="http://localhost:3000/Snake">Snake</a>
+                    <a href="http://localhost:3000/Snake">🐍 Snake</a>
                   </li>
                   <li className="button-two">
-                    <a href="http://localhost:3000/Minesweeper">Minesweeper</a>
+                    <a href="http://localhost:3000/Minesweeper">
+                      💣 Minesweeper
+                    </a>
                   </li>
                   {/* <li className="button-three">
                     <a href="#l">Blog</a>
