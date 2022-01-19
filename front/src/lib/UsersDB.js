@@ -37,3 +37,13 @@ export const editUserInfo = (token, user) => {
     })
     .catch((error) => console.log(error));
 };
+
+export const getUsersTableInfo = (token) => {
+  return axios
+
+    .get(`${URL}/users/fullUserList`, { headers: { Authorization: `Bearer ${token}` } })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => alert(error.response));
+};

@@ -1,7 +1,7 @@
-const { getUserByEmail } = require("../data/users");
+const { getUserById } = require("../data/users");
 
 async function checkIfAdmin(req, res, next) {
-  const user = await getUserByEmail(req.body.decodedToken.id);
+  const user = await getUserById(req.body.decodedToken.id);
   if (!user.isAdmin) {
     res.status(400).send("Access for Admin only");
     return;

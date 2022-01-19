@@ -7,7 +7,7 @@ import webLogo from "../build/images/itcPackMan.png";
 import { Link, useNavigate } from "react-router-dom";
 import LoginModal from "./LoginModal";
 import login45 from "../build/images/login45.png";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import { Avatar } from "@chakra-ui/react";
 
 function NavBarArcade() {
   let navigate = useNavigate();
@@ -40,9 +40,7 @@ function NavBarArcade() {
                     <a href="http://localhost:3000/Snake">🐍 Snake</a>
                   </li>
                   <li className="button-two">
-                    <a href="http://localhost:3000/Minesweeper">
-                      💣 Minesweeper
-                    </a>
+                    <a href="http://localhost:3000/Minesweeper">💣 Minesweeper</a>
                   </li>
                   {/* <li className="button-three">
                     <a href="#l">Blog</a>
@@ -65,18 +63,17 @@ function NavBarArcade() {
             </Nav>
           </Container>
           <div className="d-flex">
-            {!currentUser && (
-              <img
-                className="loginIcon"
-                src={login45}
-                onClick={handleShowModal}
-              />
-            )}
+            {!currentUser && <img className="loginIcon" alt="login-logout" src={login45} onClick={handleShowModal} />}
             {currentUser && (
               <>
                 <Link to="/myProfile" className="nav-link btn px-4">
-                  My Profile
+                  <Avatar size="md" name={currentUser.name} src={currentUser.avatar} className="m-auto" />
                 </Link>
+                {(isAdmin ? true : "") && (
+                  <Link to="/admin/" className="nav-link btn px-4">
+                    Admin
+                  </Link>
+                )}
                 <button onClick={handleLogOut} className="nav-link btn px-4">
                   Log Out
                 </button>
