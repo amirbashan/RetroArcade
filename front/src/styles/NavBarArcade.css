@@ -1,15 +1,24 @@
 .logoImageDiv {
+  width: 15%;
+}
+
+.navBarDiv {
+  padding-top: 2%;
+  width: 79%;
+  margin-left: 8%;
+  border-radius: 10% !important;
+}
+
+.ImageDiv {
   position: relative;
   display: flex;
-  width: 60%;
+  width: 70%;
 }
-/* .navBar {
-  border-radius: 50%;
-} */
 
 .container {
   max-width: 100%;
 }
+
 .loginIcon {
   width: 30%;
 }
@@ -84,5 +93,5 @@ nav ul li:hover {
 nav ul li {
   padding: 10px 15px;
   margin-right: 20px;
-  font-size: 17px !important;
+  font-size: 14px !important;
 }

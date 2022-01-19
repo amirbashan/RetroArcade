@@ -1,0 +1,10 @@
+.video {
+  padding: 0 0 0 10%;
+  width: 100% !important;
+  border-radius: 100px;
+  border-color: rgb(44, 23, 235);
+}
+
+.containerHome {
+  width: 100% !important;
+}
