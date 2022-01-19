@@ -1,12 +1,11 @@
 .logoImageDiv {
-  width: 15%;
+  width: 17%;
 }
-
 .navBarDiv {
-  padding-top: 2%;
+  margin: 2%;
   width: 79%;
   margin-left: 8%;
-  border-radius: 10% !important;
+  background-color: none;
 }
 
 .ImageDiv {

@@ -26,9 +26,9 @@ function NavBarArcade() {
   };
 
   return (
-    <div className="navBarDiv">
-      <div className="shadow p-1 mb-3 bg-white rounded">
-        <Navbar className="navBar" pill bg="light" variant="light">
+    <div>
+      <div>
+        <Navbar className="navBarDiv">
           <Container className="container">
             <Link className="logoImageDiv" to="/">
               <img className="ImageDiv" src={webLogo} alt="logo" />
