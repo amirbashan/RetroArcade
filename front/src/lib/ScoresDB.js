@@ -1,9 +1,10 @@
 import axios from "axios";
+const URL = "http://localhost:8000";
 
 export const submitScore = (token, data) => {
   return axios
 
-    .post("http://localhost:8000/scores", data, { headers: { Authorization: `Bearer ${token}` } })
+    .post(`${URL}/scores`, data, { headers: { Authorization: `Bearer ${token}` } })
     .then((response) => {
       return response;
     })
@@ -13,7 +14,7 @@ export const submitScore = (token, data) => {
 export const getTopMinesweepers = (lvl) => {
   return axios
 
-    .get(`http://localhost:8000/scores/minesweeper/?lvl=${lvl}`)
+    .get(`${URL}/scores/minesweeper/?lvl=${lvl}`)
     .then((response) => {
       return response.data;
     })
@@ -23,7 +24,7 @@ export const getTopMinesweepers = (lvl) => {
 export const getTopSnake = (lvl) => {
   return axios
 
-    .get(`http://localhost:8000/scores/Snake/?lvl=${lvl}`)
+    .get(`${URL}/scores/Snake/?lvl=${lvl}`)
     .then((response) => {
       return response.data;
     })
