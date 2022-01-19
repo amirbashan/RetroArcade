@@ -7,8 +7,8 @@ import "../styles/Home.css";
 export default function Home() {
   return (
     <Container className="containerHome">
-      <div className="video">
-        <video loop={true} autoPlay={true} muted={true}>
+      <div>
+        <video className="video" loop={true} autoPlay={true} muted={true}>
           <source src={videoAreYouReady} type="video/mp4" />
         </video>
       </div>
