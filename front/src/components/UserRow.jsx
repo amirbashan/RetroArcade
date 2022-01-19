@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import { makeAdmin } from "../lib/UsersDB";
+import { AppContext } from "../Context/AppContext";
 
 export default function UserRow(props) {
-  const { id, email, name, lastGame, isAdmin, created_date } = props.user;
-  const handleAdmin = () => {
-    // do later
+  const { id, email, name, isAdmin, created_date } = props.user;
+  const { token } = useContext(AppContext);
+  const handleAdmin = async () => {
+    if (!isAdmin) {
+      if (window.confirm(`Are you sure you want to make ${name} an Admin?`)) {
+        const response = await makeAdmin(token, id);
+        if (response.affectedRows === 1) alert("Edit Successful\nPlease refresh to see the update");
+      }
+    } else alert(`${name} is already an Admin`);
   };
 
   const fixData = (date) => {

@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-const { addUser, getUserById, editUser, getFullUsersList } = require("../data/users");
+const { addUser, getUserById, editUser, getFullUsersList, makeAdmin } = require("../data/users");
 const { checkToken } = require("../middleware/checkToken");
 const { validateBody } = require("../middleware/validateBody");
 const { preventDuplicateUsers } = require("../middleware/preventDuplicateUsers");
@@ -66,6 +66,16 @@ router.get("/fullUserList", checkToken, checkIfAdmin, async (req, res) => {
   try {
     const list = await getFullUsersList();
     res.send(list);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.put("/admin", checkToken, checkIfAdmin, async (req, res) => {
+  try {
+    const { id } = req.query;
+    const response = await makeAdmin(id);
+    res.send(response);
   } catch (err) {
     console.log(err);
   }
