@@ -1,11 +1,88 @@
 .logoImageDiv {
   position: relative;
   display: flex;
-  width: 90%;
-  margin-right: -200px;
+  width: 60%;
 }
-.navBar {
+/* .navBar {
+  border-radius: 50%;
+} */
+
+.container {
+  max-width: 100%;
+}
+.loginIcon {
+  width: 30%;
+}
+
+nav {
   position: relative;
-  top: 0px;
-  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav ul {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+nav ul li {
+  display: inline-block !important;
+  text-transform: uppercase !important;
+  font-family: "Press Start 2P", cursive !important;
+  font-size: 1.5vh !important;
+}
+
+nav ul li a {
+  text-decoration: none !important;
+  color: #fff !important;
+}
+
+/*about button*/
+.button-one {
+  background-color: #3bb273;
+  padding: 10px 20px;
+  border-radius: 10%;
+  box-shadow: -3px 3px 3px #339963;
+}
+
+/*projects button*/
+.button-two {
+  background-color: #4d9de0;
+  padding: 10px 20px;
+  border-radius: 10%;
+  box-shadow: -3px 3px 3px #2f8dda;
+}
+
+/*blog button*/
+.button-three {
+  background-color: #e15554;
+  padding: 10px 20px;
+  border-radius: 10%;
+  box-shadow: -3px 3px 3px #da2f2f;
+}
+
+/*contact button*/
+.button-four {
+  background-color: #e1bc29;
+  padding: 10px 2px;
+  border-radius: 10%;
+  box-shadow: -3px 3px 3px #c4a31c;
+}
+
+/*button click hover effect*/
+nav ul li:hover {
+  transform: scale(0.9, 0.9) !important;
+}
+
+/*animation for icon*/
+.logo:hover {
+  animation: rumble 0.3s linear !important;
+}
+
+nav ul li {
+  padding: 10px 15px;
+  margin-right: 20px;
+  font-size: 17px !important;
 }

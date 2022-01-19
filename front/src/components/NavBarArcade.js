@@ -6,6 +6,7 @@ import "../styles/NavBarArcade.css";
 import webLogo from "../build/images/itcPackMan.png";
 import { Link, useNavigate } from "react-router-dom";
 import LoginModal from "./LoginModal";
+import login45 from "../build/images/login45.png";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 function NavBarArcade() {
@@ -25,17 +26,30 @@ function NavBarArcade() {
   };
 
   return (
-    <div className="navBar">
+    <div className="navBarDiv">
       <div className="shadow p-1 mb-3 bg-white rounded">
-        <Navbar bg="light" variant="light">
-          <Container>
+        <Navbar className="navBar" bg="light" variant="light">
+          <Container className="container">
             <Link to="/">
               <img className="logoImageDiv" src={webLogo} alt="logo" />
             </Link>
             <Nav className="me-auto">
-              <Nav.Link href="http://localhost:3000/Snake">Snake</Nav.Link>
-              <Nav.Link href="http://localhost:3000/Minesweeper">Minesweeper</Nav.Link>
-
+              <nav>
+                <ul>
+                  <li className="button-one">
+                    <a href="http://localhost:3000/Snake">Snake</a>
+                  </li>
+                  <li className="button-two">
+                    <a href="http://localhost:3000/Minesweeper">Minesweeper</a>
+                  </li>
+                  {/* <li className="button-three">
+                    <a href="#l">Blog</a>
+                  </li>
+                  <li className="button-four">
+                    <a href="#l">Contact</a>
+                  </li> */}
+                </ul>
+              </nav>
               <Modal
                 aria-labelledby="contained-modal-title-vcenter"
                 dialogClassName="my-modal"
@@ -50,9 +64,11 @@ function NavBarArcade() {
           </Container>
           <div className="d-flex">
             {!currentUser && (
-              <button variant="primary" onClick={handleShowModal} className="nav-link btn px-4">
-                Login
-              </button>
+              <img
+                className="loginIcon"
+                src={login45}
+                onClick={handleShowModal}
+              />
             )}
             {currentUser && (
               <>
