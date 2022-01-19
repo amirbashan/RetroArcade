@@ -89,21 +89,12 @@ export default function Home() {
       <Row>
         <Col className="colBorderLeft">
           <div className="testDiv">
-            <img
-              style={{ float: "left" }}
-              src={circleShahar}
-              alt="Shahar Picture"
-            />
+            <img style={{ float: "left" }} src={circleShahar} alt="Shahar Picture" />
             <p style={{ fontSize: "30px" }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse leo dolor, eleifend non posuere ac, pellentesque ut
-              massa. Duis id ullamcorper nibh, in porttitor massa. Morbi
-              faucibus nunc iaculis velit ultrices, non semper eros semper.
-              Integer congue, ex nec placerat venenatis, mauris dui tristique
-              tortor, sit amet faucibus nulla velit vel sapien. Aenean urna
-              libero, vulputate quis vestibulum in, condimentum vitae est. Etiam
-              vestibulum, erat sit amet feugiat dapibus, ex eros scelerisque
-              mauris, at egestas velit neque id nisi. In in facilisis elit.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse leo dolor, eleifend non posuere ac, pellentesque ut massa. Duis id
+              ullamcorper nibh, in porttitor massa. Morbi faucibus nunc iaculis velit ultrices, non semper eros semper. Integer congue, ex nec placerat
+              venenatis, mauris dui tristique tortor, sit amet faucibus nulla velit vel sapien. Aenean urna libero, vulputate quis vestibulum in, condimentum
+              vitae est. Etiam vestibulum, erat sit amet feugiat dapibus, ex eros scelerisque mauris, at egestas velit neque id nisi. In in facilisis elit.
             </p>
           </div>
         </Col>
@@ -120,21 +111,12 @@ export default function Home() {
         <Col className="colBorderRight">
           <div className="testDiv">
             <p style={{ fontSize: "30px" }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse leo dolor, eleifend non posuere ac, pellentesque ut
-              massa. Duis id ullamcorper nibh, in porttitor massa. Morbi
-              faucibus nunc iaculis velit ultrices, non semper eros semper.
-              Integer congue, ex nec placerat venenatis, mauris dui tristique
-              tortor, sit amet faucibus nulla velit vel sapien. Aenean urna
-              libero, vulputate quis vestibulum in, condimentum vitae est. Etiam
-              vestibulum, erat sit amet feugiat dapibus, ex eros scelerisque
-              mauris, at egestas velit neque id nisi. In in facilisis elit.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse leo dolor, eleifend non posuere ac, pellentesque ut massa. Duis id
+              ullamcorper nibh, in porttitor massa. Morbi faucibus nunc iaculis velit ultrices, non semper eros semper. Integer congue, ex nec placerat
+              venenatis, mauris dui tristique tortor, sit amet faucibus nulla velit vel sapien. Aenean urna libero, vulputate quis vestibulum in, condimentum
+              vitae est. Etiam vestibulum, erat sit amet feugiat dapibus, ex eros scelerisque mauris, at egestas velit neque id nisi. In in facilisis elit.
             </p>
-            <img
-              style={{ float: "right" }}
-              src={circleAmir}
-              alt="Amir Picture"
-            />
+            <img style={{ float: "right" }} src={circleAmir} alt="Amir Picture" />
           </div>
         </Col>
       </Row>
