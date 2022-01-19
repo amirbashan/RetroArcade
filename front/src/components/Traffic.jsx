@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { getChartData, getGameNames } from "../lib/ScoresDB";
 import { AppContext } from "../Context/AppContext";
 import Chart from "react-google-charts";
+import { Heading } from "@chakra-ui/react";
 
 export default function Traffic() {
   const { token } = useContext(AppContext);
@@ -21,9 +22,11 @@ export default function Traffic() {
   };
 
   return (
-    <>
-      <Chart width="100%" height={400} chartType="LineChart" data={data} />
-      <select className="form-select mt-3" value={games} aria-label="Default select example" onChange={handleGameChange}>
+    <div className="d-flex flex-column w-75 m-auto px-5">
+      <Heading>
+        <u>Games entry's for: {games === "%" ? "All" : games}</u>
+      </Heading>
+      <select className="form-select w-50 m-auto my-2" value={games} aria-label="Default select example" onChange={handleGameChange}>
         <option value="%">All</option>
         {gamesList.map((game) => {
           return (
@@ -33,13 +36,14 @@ export default function Traffic() {
           );
         })}
       </select>
-    </>
+      <Chart width="100%" height={400} chartType="LineChart" data={data} />
+    </div>
   );
 }
 
 async function makeGraph(token, setData, games) {
   let response = await getChartData(token, games);
-  let dataSet = [["Date", "Games Played per day"]];
+  let dataSet = [["Date", "Records added\n( that day )"]];
   for (let dataObj of response) {
     const xAxes = fixData(dataObj.created_date);
     const yAxes = dataObj.counter;

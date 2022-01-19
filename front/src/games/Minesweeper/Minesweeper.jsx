@@ -119,9 +119,9 @@ export default function Board() {
 
   return (
     <div className="d-flex flex-row flex-wrap">
-      <div className="d-flex flex-column col-6 flex-wrap align-items-end">
-        <div className="">
-          <div className="d-flex form-row  flex-column mb-2 mx-1 justify-content-center align-items-center">
+      <div className="d-flex flex-column col flex-wrap align-items-end">
+        <div className="mx-5">
+          <div className="d-flex form-row  flex-column mb-2 justify-content-center align-items-center">
             <div className="d-flex form-row flex-wrap justify-content-center">
               <div className="col-2 d-flex clock d-flex justify-content-between align-items-end w-50">
                 <Flags flagsCounter={flagsCounter} />
@@ -167,7 +167,7 @@ export default function Board() {
           </div>
         </div>
       </div>
-      <div className="d-flex col-4 align-items-start mx-5">
+      <div className="d-flex col align-items-start justify-content-center ">
         <ScoreBoard scoresArray={scores} scoreType="sec" />
       </div>
     </div>

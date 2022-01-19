@@ -20,47 +20,48 @@ export default function Home() {
       </div>
       <br />
       <Row>
-        <Col>
-          <Card.Header className="leftCard">
-            <h1
-              style={{
-                fontSize: "40px",
-              }}
-            >
-              Minesweeper
-            </h1>
-          </Card.Header>
+        <Col className="d-flex flex-row flex-wrap mx-5 mb-2 px-5">
+          <div className="d-flex flex-column">
+            <Card.Header className="leftCard">
+              <h1
+                style={{
+                  fontSize: "40px",
+                }}
+              >
+                Minesweeper
+              </h1>
+            </Card.Header>
 
-          <Card className="leftCard">
-            <Card.Body>
-              <Link to="/Minesweeper">
-                <video className="video" loop={true} autoPlay={true} muted={true}>
-                  <source src={bombVidWhite} type="video/mp4" />
-                </video>
-              </Link>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col>
-          <Card.Header className="rightCard">
-            <h1
-              style={{
-                fontSize: "40px",
-              }}
-            >
-              Snake
-            </h1>
-          </Card.Header>
-
-          <Card className="rightCard">
-            <Card.Body>
-              <Link to="/Minesweeper">
-                <video className="video" loop={true} autoPlay={true} muted={true}>
-                  <source src={snakeVidWhite} type="video/mp4" />
-                </video>
-              </Link>
-            </Card.Body>
-          </Card>
+            <Card className="leftCard ">
+              <Card.Body>
+                <Link to="/Minesweeper">
+                  <video className="video" loop={true} autoPlay={true} muted={true}>
+                    <source src={bombVidWhite} type="video/mp4" />
+                  </video>
+                </Link>
+              </Card.Body>
+            </Card>
+          </div>
+          <div className="d-flex flex-column ">
+            <Card.Header className="rightCard">
+              <h1
+                style={{
+                  fontSize: "40px",
+                }}
+              >
+                Snake
+              </h1>
+            </Card.Header>
+            <Card className="rightCard">
+              <Card.Body>
+                <Link to="/Minesweeper">
+                  <video className="video" loop={true} autoPlay={true} muted={true}>
+                    <source src={snakeVidWhite} type="video/mp4" />
+                  </video>
+                </Link>
+              </Card.Body>
+            </Card>
+          </div>
         </Col>
       </Row>
       <br />
@@ -110,7 +111,7 @@ export default function Home() {
               venenatis, mauris dui tristique tortor, sit amet faucibus nulla velit vel sapien. Aenean urna libero, vulputate quis vestibulum in, condimentum
               vitae est. Etiam vestibulum, erat sit amet feugiat dapibus, ex eros scelerisque mauris, at egestas velit neque id nisi. In in facilisis elit.
             </p>
-            <img style={{ float: "right" }} src={circleAmir} alt="Amir Picture" />
+            <img style={{ float: "right" }} src={circleAmir} alt="Amir Picture" className="mx-3" />
           </div>
         </Col>
       </Row>

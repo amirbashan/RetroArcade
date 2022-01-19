@@ -4,9 +4,9 @@
 }
 
 .ImageDiv {
-  position: relative;
-  display: flex;
+  /* position: relative; */
   width: 130px;
+  min-width: 130px;
   margin: 0 30px 0 15px;
 }
 

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../Context/AppContext";
 import { useNavigate } from "react-router-dom";
-import { getFullUserInfo, editUserInfo } from "../lib/UsersDB";
+import { editUserInfo } from "../lib/UsersDB";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { Avatar, WrapItem } from "@chakra-ui/react";

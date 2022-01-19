@@ -28,8 +28,10 @@
 }
 
 .leftCard {
-  margin: 0 2% 0 10%;
+  margin: 0 10% 0 10%;
+  max-width: 350px;
 }
 .rightCard {
-  margin: 0 10% 0 2%;
+  margin: 0 10% 0 10%;
+  max-width: 350px;
 }
