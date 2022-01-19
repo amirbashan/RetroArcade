@@ -1,8 +1,9 @@
 import axios from "axios";
+const URL = "http://localhost:8000";
 
 export const signUpUser = (user) => {
   return axios
-    .post("http://localhost:8000/users/signup", user)
+    .post(`${URL}/users/signup`, user)
     .then((response) => {
       return response.data;
     })
@@ -11,7 +12,7 @@ export const signUpUser = (user) => {
 
 export const loginUser = (user) => {
   return axios
-    .post("http://localhost:8000/users/login", user)
+    .post(`${URL}/users/login`, user)
     .then((response) => {
       return response.data;
     })
@@ -21,7 +22,7 @@ export const loginUser = (user) => {
 export const getBasicUserInfo = (token) => {
   return axios
 
-    .get("http://localhost:8000/users/myPage", { headers: { Authorization: `Bearer ${token}` } })
+    .get(`${URL}/users/myPage`, { headers: { Authorization: `Bearer ${token}` } })
     .then((response) => {
       return response;
     })
@@ -30,7 +31,7 @@ export const getBasicUserInfo = (token) => {
 
 export const editUserInfo = (token, user) => {
   return axios
-    .put(`http://localhost:8000/users/myPage/`, user, { headers: { Authorization: `Bearer ${token}` } })
+    .put(`${URL}/users/myPage/`, user, { headers: { Authorization: `Bearer ${token}` } })
     .then((response) => {
       return response.data;
     })

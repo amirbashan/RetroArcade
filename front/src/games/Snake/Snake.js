@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 import { useInterval } from "../Snake/useInterval";
 import "../Snake/Snake.css";
 import { CANVAS_SIZE, SNAKE_START, APPLE_START, SCALE, SPEED, DIRECTIONS } from "../Snake/constants";
-import { Button, Dropdown, DropdownButton } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { AppContext } from "../../Context/AppContext";
 import { submitScore, getTopSnake } from "../../lib/ScoresDB";
 import ScoreBoard from "../../components/ScoreBoard";

@@ -40,7 +40,6 @@ export default function Board() {
 
   useEffect(() => {
     if (safeCellCounter < 1) {
-      setActiveGame(false);
       setClock(false);
       setFlagsCounter(0);
       let move = [...game];
@@ -54,6 +53,7 @@ export default function Board() {
         submitScore(token, newRecord);
       }
       setGame(move);
+      setActiveGame(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [safeCellCounter, currentUser]);
