@@ -12,7 +12,7 @@ export default function Modal() {
       <MiniNav />
       <Routes location={state?.backgroundLocation || location}>
         <Route path="/" element={<Login />} />
-        <Route path="SignUp" element={<SignUp />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </>
   );

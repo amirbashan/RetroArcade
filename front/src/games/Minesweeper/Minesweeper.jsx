@@ -4,7 +4,8 @@ import Cell from "./components/Cell";
 import Timer from "./components/Timer";
 import Flags from "./components/Flags";
 import { AppContext } from "../../Context/AppContext";
-import { submitScoreMinesweeper } from "../../lib/ScoresDB";
+import { submitScore, getTopMinesweepers } from "../../lib/ScoresDB";
+import ScoreBoard from "../../components/ScoreBoard";
 
 export default function Board() {
   const [game, setGame] = useState([]);
@@ -16,6 +17,7 @@ export default function Board() {
   const [level, setLevel] = useState("Beginner");
   const [possibleWin, setPossibleWin] = useState(true);
   const { currentUser, token } = useContext(AppContext);
+  const [scores, setScores] = useState([]);
 
   useEffect(() => {
     setActiveGame(true);
@@ -31,6 +33,12 @@ export default function Board() {
   }, [level]);
 
   useEffect(() => {
+    getTopMinesweepers(level).then((res) => {
+      setScores(res);
+    });
+  }, [level, activeGame]);
+
+  useEffect(() => {
     if (safeCellCounter < 1) {
       setActiveGame(false);
       setClock(false);
@@ -42,11 +50,8 @@ export default function Board() {
         }
       }
       if (currentUser) {
-        console.log("win");
         const newRecord = { game: "Minesweeper", lvl: level, score: Math.floor(time) };
-        submitScoreMinesweeper(token, newRecord).then((res) => {
-          console.log(res);
-        });
+        submitScore(token, newRecord);
       }
       setGame(move);
     }
@@ -113,51 +118,58 @@ export default function Board() {
   };
 
   return (
-    <>
-      <div className="d-flex form-row  flex-column mb-2 mx-5 justify-content-center align-items-center">
-        <div className="d-flex form-row flex-wrap justify-content-center">
-          <div className="col-2 d-flex clock d-flex justify-content-between align-items-end w-50">
-            <Flags flagsCounter={flagsCounter} />
-          </div>
-          <div className="col-2 d-flex clock d-flex justify-content-between align-items-end w-50">
-            <Timer activeGame={activeGame} clock={clock} time={time} setTime={setTime} />
-          </div>
-        </div>
-      </div>
-      <div className="d-flex flex-column align-items-center ">
-        <div className="GameFrame">
-          {game.map((row, i) => {
-            return (
-              <div className="d-flex " key={i}>
-                {row.map((details, j) => {
-                  return (
-                    <Cell
-                      key={j * 1000}
-                      details={details}
-                      flagIt={flagIt}
-                      revealCell={revealCell}
-                      activeGame={activeGame}
-                      safeCellCounter={safeCellCounter}
-                      possibleWin={possibleWin}
-                    />
-                  );
-                })}
+    <div className="d-flex flex-row flex-wrap">
+      <div className="d-flex flex-column col-6 flex-wrap align-items-end">
+        <div className="">
+          <div className="d-flex form-row  flex-column mb-2 mx-1 justify-content-center align-items-center">
+            <div className="d-flex form-row flex-wrap justify-content-center">
+              <div className="col-2 d-flex clock d-flex justify-content-between align-items-end w-50">
+                <Flags flagsCounter={flagsCounter} />
               </div>
-            );
-          })}
+              <div className="col-2 d-flex clock d-flex justify-content-between align-items-end w-50">
+                <Timer activeGame={activeGame} clock={clock} time={time} setTime={setTime} />
+              </div>
+            </div>
+          </div>
+          <div className="d-flex flex-column align-items-center ">
+            <div className="GameFrame">
+              {game.map((row, i) => {
+                return (
+                  <div className="d-flex " key={i}>
+                    {row.map((details, j) => {
+                      return (
+                        <Cell
+                          key={j * 1000}
+                          details={details}
+                          flagIt={flagIt}
+                          revealCell={revealCell}
+                          activeGame={activeGame}
+                          safeCellCounter={safeCellCounter}
+                          possibleWin={possibleWin}
+                        />
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="d-flex flex-column justify-content-center align-items-center">
+            <select className="form-select mt-1 w-50" value={level} onChange={(e) => setLevel(e.target.value)}>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Expert">Expert</option>
+            </select>
+
+            <button onClick={handleNewGame} className="btn btn-primary mt-1">
+              New Game
+            </button>
+          </div>
         </div>
       </div>
-      <div className="d-flex flex-column justify-content-center align-items-center">
-        <select className="form-select mt-1 w-50" value={level} onChange={(e) => setLevel(e.target.value)}>
-          <option value="Beginner">Beginner</option>
-          <option value="Intermediate">Intermediate</option>
-          <option value="Expert">Expert</option>
-        </select>
-
-        <button onClick={handleNewGame} className="btn btn-primary mt-1">
-          New Game
-        </button>
+      <div className="d-flex col-4 align-items-start mx-5">
+        <ScoreBoard scoresArray={scores} scoreType="sec" />
       </div>
-    </>
+    </div>
   );
 }

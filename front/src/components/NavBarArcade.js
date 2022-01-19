@@ -72,7 +72,7 @@ function NavBarArcade() {
             )}
             {currentUser && (
               <>
-                <Link to="/ProfilePage" className="nav-link btn px-4">
+                <Link to="/myProfile" className="nav-link btn px-4">
                   My Profile
                 </Link>
                 <button onClick={handleLogOut} className="nav-link btn px-4">

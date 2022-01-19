@@ -3,43 +3,68 @@ import { AppContext } from "../Context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { getFullUserInfo, editUserInfo } from "../lib/UsersDB";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
+import { Avatar, WrapItem } from "@chakra-ui/react";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
   const { currentUser, token } = useContext(AppContext);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [avatar, SetAvatar] = useState("");
-  const [role, SetRole] = useState("");
+  const [avatar, setAvatar] = useState("");
+  const [newAvatar, setNewAvatar] = useState("");
+  const [role, setRole] = useState("");
   const [joined, setJoined] = useState("");
   const [editMode, setEditMode] = useState(false);
-
-  if (!currentUser) navigate(`/`);
+  const [pictureData, setPictureData] = useState("");
 
   useEffect(() => {
+    if (!currentUser) navigate(`/`);
     setName(currentUser.name);
     setEmail(currentUser.email);
-    SetAvatar(currentUser.avatar);
-    SetRole(currentUser.isAdmin);
+    setAvatar(currentUser.avatar);
+    setRole(currentUser.isAdmin);
     setJoined(currentUser.created_date);
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   const fixData = (date) => {
-    const newDate = date.substr(8, 2) + "-" + date.substr(5, 2) + "-" + date.substr(0, 4);
-    return newDate;
+    if (date) {
+      const newDate = date.substr(8, 2) + "-" + date.substr(5, 2) + "-" + date.substr(0, 4);
+      return newDate;
+    } else {
+      return date;
+    }
   };
 
-  const handleFirstNameChange = (e) => (editMode ? setName(e.target.value) : "");
-  //   const handleAvatarChange = (e) => (editMode ? SetAvatar(e.target.value) : "");
+  const handleNameChange = (e) => (editMode ? setName(e.target.value) : "");
+  const handleAvatarChange = (e) => setNewAvatar(e.target.files[0]);
+
+  const handleUpload = () => {
+    editMode ? uploadImage() : alert("please enable edit mode first");
+  };
+
+  const uploadImage = (e) => {
+    const formData = new FormData();
+    formData.append("file", newAvatar);
+    formData.append("upload_preset", "arcade");
+    axios
+      .post("https://api.cloudinary.com/v1_1/amirbashan/image/upload", formData)
+      .then((response) => {
+        setPictureData(response.data.url);
+        setAvatar(response.data.url);
+        setAvatar("");
+      })
+      .catch((err) => console.log(err));
+  };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      const user = {
+      let user = {
         name,
         email,
-        avatar,
       };
+      pictureData ? (user.avatar = pictureData) : (user.avatar = avatar);
       if (window.confirm("Confirm changes")) {
         const response = await editUserInfo(token, user, currentUser.email);
         if (response.affectedRows === 1) alert("Edit Successful");
@@ -52,16 +77,40 @@ export default function ProfilePage() {
 
   return (
     <div className="d-flex flex-column justify-content-center">
-      <h1 className="m-auto">Profile page</h1>
       <Form className="d-flex m-auto my-3 w-75" onSubmit={(e) => handleOnSubmit(e)}>
-        <Form.Group className="d-flex flex-column w-75 m-auto">
+        <Form.Group className="d-flex flex-column w-75 m-auto ">
+          <WrapItem>
+            <Avatar size="2xl" className="mx-auto" name={name} src={avatar} />
+          </WrapItem>
           <div className="row mb-2">
             <div className="col d-flex flex-wrap align-items-end">
               <label>Email</label>
-              <input type="text" readOnly value={currentUser.email} className="form-control" />
+              <input type="text" readOnly value={email} className="form-control" />
+            </div>
+            <div className="col d-flex flex-wrap align-items-end">
+              <label>Name</label>
+              <input type="text" onChange={(e) => handleNameChange(e)} value={name} className="form-control" />
             </div>
           </div>
-
+          <div className="row mb-2">
+            <div className="col d-flex flex-wrap align-items-end">
+              <label>Role</label>
+              <input type="text" readOnly value={role === 1 ? "Admin" : "User"} className="form-control" />
+            </div>
+            <div className="col d-flex flex-wrap align-items-end">
+              <label>Joined date</label>
+              <input type="text" readOnly value={fixData(joined)} className="form-control" />
+            </div>
+          </div>
+          <div className="d-flex flex-column ">
+            <label className="align-self-start">Change your Avatar</label>
+            <div className="d-flex flex-row">
+              <input type="file" onChange={handleAvatarChange} className="form-control mb-2" />
+              <button type="button" onClick={handleUpload} className="form-control w-25 mb-2">
+                Upload {pictureData && <>✔️</>}
+              </button>
+            </div>
+          </div>
           <div className="row my-2">
             <div className="col d-flex">
               {!editMode && (
