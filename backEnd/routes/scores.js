@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { checkToken } = require("../middleware/checkToken");
-const { addScore, getTop10Time, getTop10Score } = require("../data/scores");
+const { addScore, getTop10Time, getTop10Score, getChartData, getGames } = require("../data/scores");
 const { validateBody } = require("../middleware/validateBody");
+const { checkToken } = require("../middleware/checkToken");
+const { checkIfAdmin } = require("../middleware/checkIfAdmin");
 const Schemas = require("../schemas/allSchemas");
 
 router.post("/", checkToken, validateBody(Schemas.postScore), async (req, res) => {
@@ -23,6 +24,17 @@ router.get("/minesweeper", async (req, res) => {
   const { lvl } = req.query;
   const game = "Minesweeper";
   const response = await getTop10Time(game, lvl);
+  res.send(response);
+});
+
+router.get("/Traffic", checkToken, checkIfAdmin, async (req, res) => {
+  const { game } = req.query;
+  const response = await getChartData(game);
+  res.send(response);
+});
+
+router.get("/games", async (req, res) => {
+  const response = await getGames();
   res.send(response);
 });
 

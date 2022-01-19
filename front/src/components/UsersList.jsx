@@ -8,15 +8,11 @@ export default function UsersList() {
   const { token } = useContext(AppContext);
 
   useEffect(() => {
-    getUsersTableInfo(token).then((res) => {
-      console.log(res);
-      setMyTable(res);
-    });
-  }, [token]);
+    getUsersTableInfo(token).then((res) => setMyTable(res));
+  }, []);
 
   return (
     <div className="d-flex flex-column px-5 mt-2">
-      <h1 className="m-auto mb-2">PetsList</h1>
       <table className="table table-bordered">
         <thead className="thead-dark">
           <tr>

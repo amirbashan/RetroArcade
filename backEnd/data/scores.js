@@ -29,4 +29,23 @@ async function getTop10Score(game, lvl) {
   }
 }
 
-module.exports = { addScore, getTop10Time, getTop10Score };
+async function getChartData(game) {
+  try {
+    const sql = `SELECT created_date,count(created_date) as counter ,max(game) FROM highscore WHERE game LIKE '${game}' group by created_date ORDER BY created_date;`;
+    const response = await query(sql);
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+}
+async function getGames() {
+  try {
+    const sql = `SELECT game FROM highscore GROUP BY game;`;
+    const response = await query(sql);
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+module.exports = { addScore, getTop10Time, getTop10Score, getChartData, getGames };

@@ -70,7 +70,7 @@ function NavBarArcade() {
                   <Avatar size="md" name={currentUser.name} src={currentUser.avatar} className="m-auto" />
                 </Link>
                 {(isAdmin ? true : "") && (
-                  <Link to="/admin/" className="nav-link btn px-4">
+                  <Link to="/admin/usersList" className="nav-link btn px-4">
                     Admin
                   </Link>
                 )}

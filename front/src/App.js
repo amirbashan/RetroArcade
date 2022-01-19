@@ -28,7 +28,6 @@ function App() {
         if (!response) {
           localStorage.clear();
         } else {
-          console.log(response.data);
           setCurrentUser(response.data);
           setIsAdmin(response.data.isAdmin);
         }
