@@ -1,10 +1,5 @@
-.logoImageDiv {
-  /* width: 17%; */
-}
 .navBarDiv {
-  /* margin: 2%; */
   width: 100vw;
-  /* margin-left: 8%; */
   background-color: none;
 }
 
@@ -102,6 +97,10 @@ nav ul li a {
 
 /*button click hover effect*/
 nav li:hover {
+  transform: scale(0.9, 0.9) !important;
+}
+/*button click hover effect*/
+a :hover {
   transform: scale(0.9, 0.9) !important;
 }
 

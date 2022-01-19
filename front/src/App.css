@@ -37,3 +37,7 @@ body {
 .exit {
   max-width: 100px;
 }
+.admin {
+  max-width: 150px;
+}
+

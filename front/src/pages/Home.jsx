@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import videoAreYouReady from "../build/videos/1349x410video.mp4";
 import bombVidWhite from "../build/videos/bombVidWhite.mp4";
 import snakeVidWhite from "../build/videos/snakeVidWhite.mp4";
@@ -32,16 +33,11 @@ export default function Home() {
 
           <Card className="leftCard">
             <Card.Body>
-              <video className="video" loop={true} autoPlay={true} muted={true}>
-                <source src={bombVidWhite} type="video/mp4" />
-              </video>
-              <br />
-              <Button
-                href="http://localhost:3000/Minesweeper"
-                variant="primary"
-              >
-                Play Minesweeper
-              </Button>
+              <Link to="/Minesweeper">
+                <video className="video" loop={true} autoPlay={true} muted={true}>
+                  <source src={bombVidWhite} type="video/mp4" />
+                </video>
+              </Link>
             </Card.Body>
           </Card>
         </Col>
@@ -58,13 +54,11 @@ export default function Home() {
 
           <Card className="rightCard">
             <Card.Body>
-              <video className="video" loop={true} autoPlay={true} muted={true}>
-                <source src={snakeVidWhite} type="video/mp4" />
-              </video>
-              <br />
-              <Button href="http://localhost:3000/Snake" variant="primary">
-                Play Snake
-              </Button>
+              <Link to="/Minesweeper">
+                <video className="video" loop={true} autoPlay={true} muted={true}>
+                  <source src={snakeVidWhite} type="video/mp4" />
+                </video>
+              </Link>
             </Card.Body>
           </Card>
         </Col>
