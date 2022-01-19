@@ -4,10 +4,9 @@ import Modal from "react-bootstrap/Modal";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import "../styles/NavBarArcade.css";
 import webLogo from "../build/images/itcPackMan.png";
-import Exit from "../build/images/Exit2.png";
-import Enter from "../build/images/Enter2.png";
 import { Link, useNavigate } from "react-router-dom";
 import LoginModal from "./LoginModal";
+import login45 from "../build/images/login45.png";
 import { Avatar } from "@chakra-ui/react";
 
 function NavBarArcade() {
@@ -27,11 +26,11 @@ function NavBarArcade() {
   };
 
   return (
-    <div>
+    <div className="mb-1">
       <div>
         <Navbar className="navBarDiv">
           <Container className="container">
-            <Link className="logoImageDiv" to="/">
+            <Link to="/">
               <img className="ImageDiv" src={webLogo} alt="logo" />
             </Link>
             <Nav className="me-auto">
@@ -41,12 +40,9 @@ function NavBarArcade() {
                     <Link to="/Snake">🐍 Snake</Link>
                   </li>
                   <li className="button-two">
-                    <Link to="/Snake">💣 Minesweeper</Link>
+                    <Link to="/Minesweeper">💣 Minesweeper</Link>
                   </li>
-                  <li className="button-three">
-                    <a href="#l">Blog</a>
-                  </li>
-                  {/* 
+                  {/* <li className="button-three">bla bla</li>
                   <li className="button-four">
                     <a href="#l">Contact</a>
                   </li> */}
@@ -64,24 +60,30 @@ function NavBarArcade() {
               </Modal>
             </Nav>
           </Container>
-          <div className="d-flex">
-            {!currentUser && <img className="exit mx-3 justify-self-end" alt="login-logout" src={Enter} onClick={handleShowModal} />}
-            {currentUser && (
-              <>
-                <Link to="/myProfile" className="nav-link btn px-4">
-                  <Avatar size="md" name={currentUser.name} src={currentUser.avatar} className="m-auto" />
-                </Link>
-                {(isAdmin ? true : "") && (
-                  <Link to="/admin/usersList" className="nav-link btn px-4">
-                    Admin
-                  </Link>
+          <Container className="container">
+            <Nav className="me-auto">
+              <div className="d-flex">
+                {!currentUser && <img className="loginIcon" alt="login-logout" src={login45} onClick={handleShowModal} />}
+                {currentUser && (
+                  <>
+                    <Link to="/myProfile" className="nav-link btn px-4">
+                      <Avatar size="md" name={currentUser.name} src={currentUser.avatar} className="m-auto" />
+                    </Link>
+                    {(isAdmin ? true : "") && (
+                      <li className="button-three">
+                        <Link to="/admin/usersList" className="">
+                          ADMIN
+                        </Link>
+                      </li>
+                    )}
+                    <button onClick={handleLogOut} className="nav-link btn px-4">
+                      Log Out
+                    </button>
+                  </>
                 )}
-                <button onClick={handleLogOut} className="nav-link btn px-4">
-                  <img className="exit" src={Exit} alt="Logout" />
-                </button>
-              </>
-            )}
-          </div>
+              </div>
+            </Nav>
+          </Container>
         </Navbar>
       </div>
     </div>

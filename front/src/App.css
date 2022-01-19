@@ -33,3 +33,7 @@ body {
 .custom-modal-style {
   height: 450px;
 }
+
+.exit {
+  max-width: 100px;
+}
