@@ -11,5 +11,5 @@ exports.loginSchema = S.object().prop("email", S.string().maxLength(100).require
 exports.postScore = S.object()
   .prop("game", S.string().maxLength(100).required())
   .prop("score", S.number().required())
-  .prop("lvl", S.string().maxLength(10).required())
+  .prop("lvl", S.string().maxLength(100).required())
   .valueOf();

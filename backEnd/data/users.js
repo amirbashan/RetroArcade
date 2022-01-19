@@ -43,4 +43,24 @@ async function editUser(id, email, name, avatar) {
   }
 }
 
-module.exports = { addUser, getUserByEmail, getUserById, editUser };
+async function makeAdmin(id) {
+  try {
+    const sql = `UPDATE users SET isAdmin = true WHERE id='${id}';`;
+    const response = await query(sql);
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function getFullUsersList() {
+  try {
+    const sql = `SELECT id,email,name,avatar,isAdmin,created_date FROM users`;
+    const list = await query(sql);
+    return list;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+module.exports = { addUser, getUserByEmail, getUserById, editUser, getFullUsersList, makeAdmin };

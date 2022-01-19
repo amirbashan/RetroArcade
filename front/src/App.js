@@ -10,6 +10,9 @@ import Home from "./pages/Home";
 import ProfilePage from "./pages/ProfilePage";
 import Snake from "./games/Snake/Snake";
 import Minesweeper from "./games/Minesweeper/Minesweeper";
+import AdminPage from "./pages/AdminPage";
+import UsersList from "./components/UsersList";
+import Traffic from "./components/Traffic";
 
 function App() {
   const [currentUser, setCurrentUser] = useState("");
@@ -54,6 +57,10 @@ function App() {
               <Route path="/Snake" element={<Snake />} />
               <Route path="/Minesweeper" element={<Minesweeper />} />
               <Route path="/myProfile" element={<ProfilePage />} />
+              <Route path="/Admin" element={<AdminPage />}>
+                <Route path="UsersList" element={<UsersList />} />
+                <Route path="Traffic" element={<Traffic />} />
+              </Route>
             </Routes>
           </div>
         </BrowserRouter>

@@ -24,7 +24,7 @@ export default function ScoreBoard(props) {
               <tr key={i}>
                 <th scope="row">-{i + 1}-</th>
                 <td>
-                  <Avatar size="sm" name={row.name} src={row.avatar} />
+                  <Avatar size="xs" name={row.name} src={row.avatar} />
                 </td>
                 <td>{row.name}</td>
                 <td>
