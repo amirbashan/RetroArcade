@@ -41,11 +41,11 @@ function NavBarArcade() {
                     <Link to="/Snake">🐍 Snake</Link>
                   </li>
                   <li className="button-two">
-                    <Link to="/Snake">💣 Minesweeper</Link>
+                    <Link to="/Minesweeper">💣 Minesweeper</Link>
                   </li>
-                  <li className="button-three">
+                  {/* <li className="button-three">
                     <a href="#l">Blog</a>
-                  </li>
+                  </li> */}
                   {/* 
                   <li className="button-four">
                     <a href="#l">Contact</a>
