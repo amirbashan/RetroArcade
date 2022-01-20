@@ -54,7 +54,7 @@ export default function Home() {
             </Card.Header>
             <Card className="rightCard">
               <Card.Body>
-                <Link to="/Minesweeper">
+                <Link to="/Snake">
                   <video className="video" loop={true} autoPlay={true} muted={true}>
                     <source src={snakeVidWhite} type="video/mp4" />
                   </video>

@@ -97,9 +97,7 @@ const Snake = () => {
   return (
     <div className="d-flex flex-wrap">
       <div className="col-6 gameArea" role="button" tabIndex="0" onKeyDown={(e) => moveSnake(e)}>
-        <h1 className="snakeButton">Snake</h1>
         <div className="scoreAndDrop">
-          {" "}
           <h1 className="counterH1">Points: {counter}</h1>
         </div>
 
