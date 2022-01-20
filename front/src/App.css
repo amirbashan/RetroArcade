@@ -41,3 +41,32 @@ body {
   max-width: 150px;
 }
 
+.logo {
+  /* position: relative; */
+  width: 130px;
+  min-width: 130px;
+  margin: 0 30px 0 15px;
+}
+
+nav {
+  width: 100vw;
+  height: 90px;
+}
+
+/* logo hover */
+nav div img:hover {
+  transform: scale(0.9, 0.9) !important;
+}
+
+/*button click hover effect*/
+nav div > *:hover {
+  transform: scale(0.9, 0.9) !important;
+}
+
+nav {
+  background: none;
+  display: inline-block !important;
+  text-transform: uppercase !important;
+  font-family: "Press Start 2P", cursive !important;
+  font-size: 1.5vh !important;
+}
