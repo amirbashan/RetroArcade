@@ -18,8 +18,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ### `npm ren dev`
 Runs the app in the development mode with nodemon.\
 - Migrate the db 
-- server listen at http://localhost:8000
-- NOTE! - dont forget to add .env file & create a new SQL schema called "aecade"
+- server listen at [http://localhost:8000]
+- NOTE! - don't forget to add .env file & create a new SQL schema called "arcade"
 
 
 
