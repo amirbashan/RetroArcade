@@ -48,11 +48,6 @@ body {
   margin: 0 30px 0 15px;
 }
 
-nav {
-  width: 100vw;
-  height: 90px;
-}
-
 /* logo hover */
 nav div img:hover {
   transform: scale(0.9, 0.9) !important;
@@ -63,10 +58,28 @@ nav div > *:hover {
   transform: scale(0.9, 0.9) !important;
 }
 
-nav {
+.mainNav {
+  width: 100vw;
+  min-height: 90px;
   background: none;
-  display: inline-block !important;
   text-transform: uppercase !important;
   font-family: "Press Start 2P", cursive !important;
   font-size: 1.5vh !important;
+}
+
+.video {
+  width: 100% !important;
+  border-radius: 20px;
+  margin: 0 10% 0 0;
+}
+.videoDiv {
+  margin: 0 5% 0 5%;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.bio {
+  font-size: 24px;
 }

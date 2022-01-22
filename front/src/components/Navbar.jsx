@@ -31,7 +31,7 @@ function Navbar() {
 
   return (
     <div className="mb-3">
-      <nav className="nav shadow d-flex align-items-center justify-content-start py-1">
+      <nav className=" nav shadow d-flex align-items-center justify-content-start py-1 mainNav">
         <div className="mx-3">
           <Link to="/">
             <img className="logo" src={webLogo} alt="logo" />
