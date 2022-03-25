@@ -5,7 +5,7 @@ import { getBasicUserInfo } from "./lib/UsersDB";
 import { ChakraProvider } from "@chakra-ui/react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import NavBarArcade from "./components/NavBarArcade";
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import ProfilePage from "./pages/ProfilePage";
 import Snake from "./games/Snake/Snake";
@@ -51,7 +51,7 @@ function App() {
       <ChakraProvider>
         <BrowserRouter>
           <div className="App">
-            <NavBarArcade />
+            <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Snake" element={<Snake />} />
