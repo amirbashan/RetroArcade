@@ -28,7 +28,7 @@ postgrator
   .then((result) => {
     console.log(`migrated db successfully:`, result);
     app.listen(process.env.PORT, () => {
-      console.log(`server is listening at http://${process.env.HOST}:${process.env.PORT}`);
+      console.log(`server is running on port ${process.env.PORT}`);
     });
   })
   .catch((error) => console.error(error));
